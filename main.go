@@ -51,9 +51,9 @@ type unifiAddrList struct {
 var version = "unknown"
 
 func main() {
-	// Configure zerolog to write to stderr with no buffering
-	// This ensures logs appear immediately in container environments
-	log.Logger = zerolog.New(os.Stderr).With().Timestamp().Logger()
+	// Configure zerolog with ConsoleWriter for human-readable output to stdout
+	// This ensures logs appear correctly in distroless container environments
+	log.Logger = zerolog.New(zerolog.ConsoleWriter{Out: os.Stdout}).With().Timestamp().Logger()
 
 	log.Info().Msg("Starting cs-unifi-bouncer with version: " + version)
 
